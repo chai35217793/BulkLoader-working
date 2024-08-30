@@ -3,3 +3,5 @@ TgCrypto
 yt-dlp
 hachoir
 python-dotenv
+Flask
+python-telegram-bot
