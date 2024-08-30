@@ -14,4 +14,8 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN apt-get update
 RUN apt-get install -y ffmpeg
 
-CMD python3 -m Bot
+# Expose the port that your application will run on
+EXPOSE 10000
+
+# Command to run your bot
+CMD ["python3", "-m", "Bot"]
