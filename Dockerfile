@@ -11,7 +11,10 @@ COPY requirements.txt .
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
-RUN apt-get update
-RUN apt-get install -y ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
 
-CMD ["python3", "app.py"]
+# Make the script executable
+RUN chmod +x start.sh
+
+# Run the startup script
+CMD ["./start.sh"]
