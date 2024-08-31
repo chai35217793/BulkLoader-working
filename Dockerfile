@@ -11,10 +11,8 @@ COPY requirements.txt .
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get install -y ffmpeg
+RUN apt-get update
+RUN apt-get install -y ffmpeg
 
-# Make the script executable
-RUN chmod +x start.sh
-
-# Run the startup script
-CMD ["./start.sh"]
+# Use Gunicorn to serve the Flask app
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:$PORT"]
