@@ -14,8 +14,12 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN apt-get update
 RUN apt-get install -y ffmpeg supervisor
 
-# Create a Supervisor configuration file
+# Copy the start.sh script and Supervisor configuration file
+COPY start.sh /app/start.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Run supervisord to start both processes
-CMD ["/usr/bin/supervisord"]
+# Make the start.sh script executable
+RUN chmod +x /app/start.sh
+
+# Run the start.sh script
+CMD ["/app/start.sh"]
